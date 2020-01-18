@@ -10,11 +10,11 @@ function angkaPrima(angka) {
     let numb = angka
     let result = true
 
-    if(angka < 2){
+    if (angka < 2) {
         return false
     } else {
-        for(let i = 2; i < angka; i++){
-            if(numb%i == 0){
+        for (let i = 2; i < angka; i++) {
+            if (numb % i == 0) {
                 result = false
                 break
             }

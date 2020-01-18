@@ -17,7 +17,7 @@ function highestScore(students) {
     for(let i = 0; i < students.length; i++){
         if(obj[students[i].class] == undefined){
             obj[students[i].class] = {}
-            if(obj[students[i].class]['score'] == undefined){
+            if(obj[students[i].class].score == undefined){
                 obj[students[i].class]['name'] = students[i].name
                 obj[students[i].class]['score'] = students[i].score
             } 

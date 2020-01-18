@@ -17,41 +17,64 @@ toko X tersebut yang berisikan info nama barang, siapa saja yang membeli, sisa s
 */
 
 function countProfit(shoppers) {
-    let listBarang = [['Sepatu Stacattu', 1500000, 10],
-    ['Baju Zoro', 500000, 2],
-    ['Sweater Uniklooh', 175000, 1]
-    ];
-
-    var output = []
-    if (shoppers.length == 0) {
-        return []
-    } else {
-        for (let j = 0; j < listBarang.length; j++) {
-            var jumlahBeli = 0
-            var totalProfit = 0
-            var namaPembeli = []
-            for (let i = 0; i < shoppers.length; i++) {
-                if (shoppers[i].product == listBarang[j][0] && (jumlahBeli + shoppers[i].amount) <= listBarang[j][2]) {
-                    namaPembeli.push(shoppers[i].name)
-                    jumlahBeli += shoppers[i].amount
-                    totalProfit = jumlahBeli * listBarang[j][1]
-                }
-                var obj = {
-                    product: listBarang[j][0],
-                    shoppers: namaPembeli,
-                    leftOver: listBarang[j][2] - jumlahBeli,
-                    totalProfit: totalProfit
-                }
-                // console.log(sisaBarang)
-            }
-            output.push(obj)
-        }
+  let listBarang = [{
+      merk: 'Sepatu Stacattu',
+      harga: 1500000,
+      stok: 10
+    },
+    {
+      merk: 'Baju Zoro',
+      harga: 500000,
+      stok: 2
+    },
+    {
+      merk: 'Sweater Uniklooh',
+      harga: 175000,
+      stok: 1
     }
-    return output
+  ]
+
+  if (shoppers.length == 0) {
+    return []
+  } else {
+    let result = []
+    for (let i = 0; i < listBarang.length; i++) {
+      let totalProfit = 0
+      let totalBelanja = 0
+      let namaPembeli = []
+      for (let j = 0; j < shoppers.length; j++) {
+        if (shoppers[j].product == listBarang[i].merk && (totalBelanja + shoppers[j].amount) <= listBarang[i].stok) {
+          namaPembeli.push(shoppers[j].name)
+          totalBelanja += shoppers[j].amount
+          totalProfit += listBarang[i].harga * shoppers[j].amount
+        }
+        var obj = {
+          product: listBarang[i].merk,
+          shoppers: namaPembeli,
+          leftOver: listBarang[i].stok - totalBelanja,
+          totalProfit: totalProfit
+        }
+      }
+      result.push(obj)
+    }
+    return result
+  }
 }
 
 // TEST CASES
-console.log(countProfit([{ name: 'Windi', product: 'Sepatu Stacattu', amount: 2 }, { name: 'Vanessa', product: 'Sepatu Stacattu', amount: 3 }, { name: 'Rani', product: 'Sweater Uniklooh', amount: 2 }]));
+console.log(countProfit([{
+  name: 'Windi',
+  product: 'Sepatu Stacattu',
+  amount: 2
+}, {
+  name: 'Vanessa',
+  product: 'Sepatu Stacattu',
+  amount: 3
+}, {
+  name: 'Rani',
+  product: 'Sweater Uniklooh',
+  amount: 2
+}]));
 //[ { product: 'Sepatu Stacattu',
 //   shoppers: [ 'Windi', 'Vanessa' ],
 //   leftOver: 5,
@@ -65,7 +88,27 @@ console.log(countProfit([{ name: 'Windi', product: 'Sepatu Stacattu', amount: 2 
 //   leftOver: 1,
 //   totalProfit: 0 } ]
 
-console.log(countProfit([{ name: 'Windi', product: 'Sepatu Stacattu', amount: 8 }, { name: 'Vanessa', product: 'Sepatu Stacattu', amount: 10 }, { name: 'Rani', product: 'Sweater Uniklooh', amount: 1 }, { name: 'Devi', product: 'Baju Zoro', amount: 1 }, { name: 'Lisa', product: 'Baju Zoro', amount: 1 }]));
+console.log(countProfit([{
+  name: 'Windi',
+  product: 'Sepatu Stacattu',
+  amount: 8
+}, {
+  name: 'Vanessa',
+  product: 'Sepatu Stacattu',
+  amount: 10
+}, {
+  name: 'Rani',
+  product: 'Sweater Uniklooh',
+  amount: 1
+}, {
+  name: 'Devi',
+  product: 'Baju Zoro',
+  amount: 1
+}, {
+  name: 'Lisa',
+  product: 'Baju Zoro',
+  amount: 1
+}]));
 // [ { product: 'Sepatu Stacattu',
 //     shoppers: [ 'Windi' ],
 //     leftOver: 2,
@@ -78,7 +121,11 @@ console.log(countProfit([{ name: 'Windi', product: 'Sepatu Stacattu', amount: 8 
 //     shoppers: [ 'Rani' ],
 //     leftOver: 0,
 //     totalProfit: 175000 } ]
-console.log(countProfit([{ name: 'Windi', product: 'Sepatu Naiki', amount: 5 }]));
+console.log(countProfit([{
+  name: 'Windi',
+  product: 'Sepatu Naiki',
+  amount: 5
+}]));
 // [ { product: 'Sepatu Stacattu',
 //     shoppers: [],
 //     leftOver: 10,

@@ -30,7 +30,7 @@ function graduates(students) {
             if (students[i].score > 75) {
                 let murid = {
                     name: students[i].name,
-                    score: students[i].score,
+                    score: students[i].score
                 }
                 output[students[i].class].push(murid)
             }

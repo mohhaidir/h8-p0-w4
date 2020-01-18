@@ -10,13 +10,13 @@ function ubahHuruf(kata) {
     let huruf = 'abcdefghijklmnopqrstuvwxz'
     let modified = ''
 
-    for(let i = 0; i < kata.length; i++){
-        for(let j = 0; j < huruf.length; j++){
-            if(kata[i] == huruf[j]){
-                if(kata[i] == 'z'){
+    for (let i = 0; i < kata.length; i++) {
+        for (let j = 0; j < huruf.length; j++) {
+            if (kata[i] == huruf[j]) {
+                if (kata[i] == 'z') {
                     modified += 'a'
                 } else {
-                    modified += huruf[j+1]
+                    modified += huruf[j + 1]
                 }
             }
         }
@@ -26,8 +26,8 @@ function ubahHuruf(kata) {
 
 // TEST CASES
 console.log(ubahHuruf('wow')); // xpx
-// console.log(ubahHuruf('developer')); // efwfmpqfs
-// console.log(ubahHuruf('javascript')); // kbwbtdsjqu
-// console.log(ubahHuruf('keren')); // lfsfo
-// console.log(ubahHuruf('semangat')); // tfnbohbu
-// console.log(ubahHuruf('zaza')); // abab
+console.log(ubahHuruf('developer')); // efwfmpqfs
+console.log(ubahHuruf('javascript')); // kbwbtdsjqu
+console.log(ubahHuruf('keren')); // lfsfo
+console.log(ubahHuruf('semangat')); // tfnbohbu
+console.log(ubahHuruf('zaza')); // abab

@@ -15,22 +15,21 @@ John Doe: { firstName: 'John', lastName: 'Doe', gender: 'male', age: 18 }
 
 function changeMe(arr) {
     if (arr.length == 0) {
-        return []
+        return ''
     } else {
         for (let i = 0; i < arr.length; i++) {
-            let age = ''
+            var umur = ''
             if (arr[i][3] == undefined || arr[i][3] > new Date().getFullYear()) {
-                age = 'Invalid Birth Year'
+                umur = 'Invalid Birth Year'
             } else {
-                age = new Date().getFullYear() - arr[i][3]
+                umur = new Date().getFullYear() - arr[i][3]
             }
-            // console.log(age, typeof(age))
-            console.log((i + 1) + '. ' + arr[i][0] + ' ' + arr[i][1] + ':')
-            var obj = {
+            console.log(`${i + 1}. ${arr[i][0]} ${arr[i][1]}:`)
+            let obj = {
                 firstName: arr[i][0],
                 lastName: arr[i][1],
                 gender: arr[i][2],
-                age: age
+                age: umur
             }
             console.log(obj)
         }
@@ -38,7 +37,10 @@ function changeMe(arr) {
 }
 
 // TEST CASES
-changeMe([['Christ', 'Evans', 'Male', 1982], ['Robert', 'Downey', 'Male']]);
+changeMe([
+    ['Christ', 'Evans', 'Male', 1982],
+    ['Robert', 'Downey', 'Male']
+]);
 // 1. Christ Evans:
 // { firstName: 'Christ',
 //   lastName: 'Evans',

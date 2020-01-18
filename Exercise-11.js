@@ -23,8 +23,7 @@ maka output:
 { memberId: '324193hDew2', money: 700000, listPurchased: [ 'Baju Zoro', 'Sweater Uniklooh' ], changeMoney: 25000 }
 */
 
-var items = [
-    {
+var items = [{
         type: 'Sepatu',
         brand: 'Stacattu',
         price: 1500000
@@ -52,26 +51,30 @@ var items = [
 ]
 
 function shoppingTime(memberId, money) {
-    var cart = {
-        memberId: memberId,
-        money: money,
-        listPurchased: [],
-        changeMoney: 0
-    }
-    var currentMoney = money
-    for (let i = 0; i < items.length; i++) {
-        if (items[i].price <= currentMoney) {
-            cart.listPurchased.push(items[i].type + ' ' + items[i].brand)
-            currentMoney -= items[i].price
-        }
-    }
-    if (memberId == '' || money == undefined) {
-        return 'Mohon maaf, toko X hanya berlaku untuk member saja.'
+    if (memberId == undefined || money == undefined) {
+        return 'Mohon maaf, toko X hanya berlaku untuk member saja'
+    } else if (memberId.length == 0) {
+        return 'Mohon maaf, toko X hanya berlaku untuk member saja'
     } else if (money <= 50000) {
         return 'Mohon maaf, uang tidak cukup'
+    } else {
+        let cart = {
+            memberId: memberId,
+            money: money,
+            listPurchased: [],
+            changeMoney: 0
+        }
+        let moneyLeft = money
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].price <= moneyLeft) {
+                moneyLeft -= items[i].price
+                cart.listPurchased.push(`${items[i].type} ${items[i].brand}`)
+            }
+        }
+        cart.changeMoney = moneyLeft
+
+        return cart
     }
-    cart.changeMoney = currentMoney
-    return cart
 }
 
 
